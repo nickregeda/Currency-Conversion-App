@@ -1,10 +1,84 @@
-
-
-const LatestRates = (props) => {
-    return (
-        <div>
-
-        </div>
-    )
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
 }
-export default LatestRates;
+
+.form_container {
+    text-align: center;
+    flex: 0 0 50%;
+}
+
+.result_container {
+    color: #4d4a4a;
+
+    border-radius: 50px;
+    border: solid 2px #343131;
+    padding-left: 40px;
+    flex: 0 0 30%;
+    margin: 0 auto;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.results_label{
+    color: #4d4a4a;
+
+    font-size: 22px;
+    font-weight: bold;
+
+}
+
+.form label {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #5d5757;
+}
+
+.field {
+    color: #4d4a4a;
+
+    margin-top: 10px;
+    border: solid 2px #343131;
+    padding: 5px 15px;
+    outline: none;
+    border-radius: 50px;
+
+    max-width: 300px;
+    font-size: 18px;
+    height: 50px;
+}
+
+.field_container {
+    margin-bottom: 20px;
+}
+
+.button {
+    color: #5d5757;
+
+    margin-top: 10px;
+    margin-bottom: 30px;
+    /*border: solid 2px black;*/
+    border: none;
+    background: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    border-radius: 50px;
+    transition: all 0.1s;
+    outline: none;
+}
+
+.button:hover {
+    transform: scale(1.1);
+    background: #8288ff;
+    color: white;
+    border: none;
+}

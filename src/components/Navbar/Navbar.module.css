@@ -1,13 +1,26 @@
-import {NavLink} from "react-router-dom";
-
-const Navbar = (props) => {
-    return (
-        <div>
-            <NavLink to={'/latest-rates'}>Latest Rates</NavLink>
-            <NavLink to={'/historical-rates'}>Historical Rates</NavLink>
-            <NavLink to={'/convert'}>Convert</NavLink>
-        </div>
-    )
+.container {
+    display: flex;
+    height: 50px;
+    margin-bottom: 50px;
 }
 
-export default Navbar;
+.container a {
+    box-sizing: border-box;
+    flex: 0 0 33.33%;
+    height: 100%;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 50px;
+    color: #5d5757;
+
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+    transition: all 0.1s;
+}
+
+.container a:hover {
+    transform: scale(1.1);
+    background: #8288ff;
+    color: white;
+}

@@ -1,4 +1,4 @@
-import {currencyApi} from "../dal/api";
+import {currencySymbolsApi, latestRatesApi} from "../dal/api";
 
 const SET_SUPPORTED_SYMBOLS = 'SET_SUPPORTED_SYMBOLS';
 const SET_SYMBOLS = 'SET_SYMBOLS';
@@ -8,7 +8,7 @@ let initialState = {
     symbols: {},
 }
 
-let Reducer = (state = initialState, action) => {
+let LatestRatesReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_SUPPORTED_SYMBOLS:
             return {
@@ -25,7 +25,7 @@ let Reducer = (state = initialState, action) => {
     }
 }
 
-export default Reducer;
+export default LatestRatesReducer;
 
 //action creators
 export const setSupportedSymbols = (symbols) => ({type: SET_SUPPORTED_SYMBOLS, symbols});
@@ -34,7 +34,7 @@ export const setSymbols = (symbols) => ({type: SET_SYMBOLS, symbols});
 //thunk creators
 export const getSupportedSymbols = () => {
     return (dispatch) => {
-        currencyApi.getSupportedSymbols().then(
+        currencySymbolsApi.getSupportedSymbols().then(
             response => {
                 dispatch(setSupportedSymbols(response.data.symbols))
             }
@@ -44,7 +44,7 @@ export const getSupportedSymbols = () => {
 
 export const getLatestRates = (base, symbols) => {
     return (dispatch) => {
-        currencyApi.getLatestRates(base, symbols).then(
+        latestRatesApi.getLatestRates(base, symbols).then(
             response => {
                 dispatch(setSymbols(response.data.rates))
             }
