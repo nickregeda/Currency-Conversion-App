@@ -1,0 +1,13 @@
+import {NavLink} from "react-router-dom";
+
+const Navbar = (props) => {
+    return (
+        <div>
+            <NavLink to={'/latest-rates'}>Latest Rates</NavLink>
+            <NavLink to={'/historical-rates'}>Historical Rates</NavLink>
+            <NavLink to={'/convert'}>Convert</NavLink>
+        </div>
+    )
+}
+
+export default Navbar;
