@@ -1,0 +1,38 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.formik_container {
+    text-align: center;
+    flex: 0 0 50%;
+}
+
+.result_container {
+    color: #4d4a4a;
+    flex: 0 0 30%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.result_currency_container {
+    min-height: 210px;
+    text-align: left;
+    border-radius: 50px;
+    border: solid 2px #343131;
+    padding-left: 40px;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.result_label {
+    color: #4d4a4a;
+    font-size: 22px;
+    font-weight: bold;
+}
+
