@@ -1,0 +1,24 @@
+.field_container {
+    margin-bottom: 10px;
+}
+
+.error_mes {
+    color: red;
+    font-weight: bold;
+}
+
+.date_option {
+    height: 30px;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.date_checkbox {
+    width: 15px;
+}
+
+.label_checkbox {
+    margin-top: 5px;
+    font-size: 20px;
+}

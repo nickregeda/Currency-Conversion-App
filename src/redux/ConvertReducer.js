@@ -28,6 +28,7 @@ export const getConvertRate = (from, to, amount) => {
     return (dispatch) => {
         convertApi.getConvertRate(from, to, amount).then(
             response => {
+                debugger
                 dispatch(setRate(response.data.result))
             }
         )

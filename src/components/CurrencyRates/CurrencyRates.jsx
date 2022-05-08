@@ -1,53 +1,55 @@
-import s from './HistoricalRates.module.css';
+import s from './CurrencyRates.module.css';
 import {Formik} from "formik";
-import moment from 'moment';
 import {useState} from "react";
 import RatesMap from "../../common/RatesMap";
 import RatesForm from "../../common/RatesForm/RatesForm";
 
-export const HistoricalRatesForm = (props) => {
-    return (
-        <RatesForm/>
-    )
-}
-
-const HistoricalRates = (props) => {
-    let current_date = (moment().format(moment.HTML5_FMT.DATE))
-
+const CurrencyRates = (props) => {
     const [base, setBase] = useState();
 
-    let onSubmit = (values) => {
-        let symbols_array = Object.values(values).map(s => s.substr(0, 3));
-        let base = symbols_array[1];
+    let onSubmit = (values, setFieldValue) => {
+        debugger
+        let symbols_array = Object.values(values).slice(2);
+        symbols_array = symbols_array.map(s => s.substr(0, 3));
+        let base = symbols_array[0];
+        if (base === '') {
+            base = 'EUR';
+        }
         setBase(base);
-        let symbols = symbols_array.slice(2).join();
+        let symbols = symbols_array.slice(1).join();
 
-        props.getHistoricalRates(values.date, base, symbols);
-
-        // let symbols_array = Object.values(values).map(s => s.substr(0, 3));
-        // let base = symbols_array[0];
-        // setBase(base);
-        // let symbols = symbols_array.slice(1).join();
-        //
-        // props.getLatestRates(base, symbols)
+        if (!values.date) {
+            props.getLatestRates(base, symbols)
+        } else {
+            props.getHistoricalRates(values.date, base, symbols);
+        }
     }
 
     return (
         <div className={s.container}>
-            <Formik
-                initialValues={{date: current_date, base: '', symbol1: '', symbol2: '', symbol3: ''}}
-                onSubmit={onSubmit}
-            >
-                {({values}) => {
-                    return <HistoricalRatesForm supported_symbols={props.supported_symbols}/>
-                }}
-            </Formik>
+            <div className={s.formik_container}>
+                <Formik
+                    initialValues={{date_checkbox: false, date: '', base: '', symbol1: '', symbol2: '', symbol3: ''}}
+                    validate={values => {
+                        const errors = {}
+                        if (!values.symbol1 && !values.symbol2 && !values.symbol3) {
+                            errors.symbol1 = 'Please select at least one currency'
+                        }
+                        return errors;
+                    }}
+                    onSubmit={onSubmit}
+                >
+                    {({values, setFieldValue}) => {
+                        return <RatesForm setFieldValue={setFieldValue} date_option={values.date_checkbox}/>
+                    }}
+                </Formik>
+            </div>
             <div className={s.result_container}>
                 <div className={s.result_label}>Results for {base}</div>
                 <div className={s.result_currency_container}>
                     <div>
-                        {base !== undefined && base !== '' ? base + ': 1' : base !== undefined && base === '' && 'EUR: 1'}
-                        <RatesMap rates={props.symbols}/>
+                        {base !== undefined && base + ': 1'}
+                        <RatesMap rates={props.rates}/>
                     </div>
                 </div>
                 <div>EUR by default</div>
@@ -55,4 +57,4 @@ const HistoricalRates = (props) => {
         </div>
     )
 }
-export default HistoricalRates;
+export default CurrencyRates;

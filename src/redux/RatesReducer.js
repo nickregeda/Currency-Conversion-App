@@ -1,15 +1,14 @@
 import {currencySymbolsApi, latestRatesApi, historicalRatesApi} from "../dal/api";
 
 const SET_SUPPORTED_SYMBOLS = 'SET_SUPPORTED_SYMBOLS';
-const SET_SYMBOLS = 'SET_SYMBOLS';
+const SET_RATES = 'SET_SYMBOLS';
 
 let initialState = {
     supported_symbols: {},
     rates: {},
-
 }
 
-let LatestRatesReducer = (state = initialState, action) => {
+let RatesReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_SUPPORTED_SYMBOLS:
             return {
@@ -26,11 +25,11 @@ let LatestRatesReducer = (state = initialState, action) => {
     }
 }
 
-export default LatestRatesReducer;
+export default RatesReducer;
 
 //action creators
 export const setSupportedSymbols = (symbols) => ({type: SET_SUPPORTED_SYMBOLS, symbols});
-export const setRates = (rates) => ({type: SET_SYMBOLS, rates});
+export const setRates = (rates) => ({type: SET_RATES, rates});
 
 //thunk creators
 export const getSupportedSymbols = () => {
@@ -48,7 +47,7 @@ export const getLatestRates = (base, symbols) => {
         latestRatesApi.getLatestRates(base, symbols).then(
             response => {
                 if (response.data.success) {
-                    dispatch(setSymbols(response.data.rates))
+                    dispatch(setRates(response.data.rates))
                 }
             }
         )
@@ -59,8 +58,7 @@ export const getHistoricalRates = (date, base, symbols) => {
     return (dispatch) => {
         historicalRatesApi.getHistoricalRates(date, base, symbols).then(
             response => {
-                debugger
-                dispatch(setHistoricalRates(response.data.rates));
+                dispatch(setRates(response.data.rates));
             }
         )
     }

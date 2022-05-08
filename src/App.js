@@ -1,12 +1,11 @@
 import {Routes, Route} from 'react-router-dom';
 import './App.css';
-import HistoricalRates from "./components/HistoricalRates/HistoricalRates";
 import Navbar from "./components/Navbar/Navbar";
 import {useEffect} from "react";
-import {getSupportedSymbols} from "./redux/LatestRatesReducer";
+import {getSupportedSymbols} from "./redux/RatesReducer";
 import {connect} from "react-redux";
-import LatestRatesContainer from "./components/LatestRates/LatestRatesContainer";
 import ConvertContainer from "./components/Convert/ConvertContainer";
+import CurrencyRatesContainer from "./components/CurrencyRates/CurrencyRatesContainer";
 
 function App(props) {
     useEffect(
@@ -18,8 +17,7 @@ function App(props) {
         <div className="container">
             <Navbar/>
             <Routes>
-                <Route path={'/latest-rates'} element={<LatestRatesContainer/>}/>
-                <Route path={'/historical-rates'} element={<HistoricalRates/>}/>
+                <Route path={'/currency-rates'} element={<CurrencyRatesContainer/>}/>
                 <Route path={'/convert'} element={<ConvertContainer/>}/>
             </Routes>
         </div>

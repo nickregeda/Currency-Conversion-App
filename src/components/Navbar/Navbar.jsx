@@ -5,8 +5,7 @@ const Navbar = (props) => {
     return (
         <div className={s.container}>
             <NavLink to={'/convert'}>Convert</NavLink>
-            <NavLink to={'/latest-rates'}>Latest Rates</NavLink>
-            <NavLink to={'/historical-rates'}>Historical Rates</NavLink>
+            <NavLink to={'/currency-rates'}>Currency Rates</NavLink>
         </div>
     )
 }

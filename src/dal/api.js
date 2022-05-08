@@ -1,4 +1,5 @@
 import * as axios from 'axios';
+import moment from "moment";
 
 const instance = axios.create({
     baseURL: 'https://fixer-fixer-currency-v1.p.rapidapi.com',
@@ -14,9 +15,16 @@ export const latestRatesApi = {
     }
 }
 
+export const historicalRatesApi = {
+    getHistoricalRates(date, base, symbols) {
+        return instance.get(`/${date}?base=${base}&symbols=${symbols}`)
+    }
+}
+
+const current_date = moment().format(moment.HTML5_FMT.DATE);
 export const convertApi = {
-    getConvertRate(from, to, amount) {
-        return instance.get(`/convert?from=${from}&to=${to}&amount=${amount}`)
+    getConvertRate(from, to, amount, date = current_date) {
+        return instance.get(`/convert?from=${from}&to=${to}&amount=${amount}&date=${date}`)
     }
 }
 

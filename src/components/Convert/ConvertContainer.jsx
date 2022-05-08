@@ -18,7 +18,6 @@ class ConvertContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         result_rate: state.ConvertReducer.result_rate,
-        supported_symbols: state.LatestRatesReducer.supported_symbols,
     }
 }
 
